@@ -29,11 +29,12 @@ This project is a dynamic web application for creating and managing a personal b
   - Version Control System : Git
 
 ## Setup Instructions
-1. [Clone the repository](#) or [download the ZIP file](#) of this project.
-2. [Install the necessary dependencies](#) for both the frontend and backend.
-3. [Configure the database](#) and set up any required environment variables.
-4. [Start the development server](#) for both the frontend and backend.
-5. [Access the application](#) in your web browser.
+1. [Clone the repository](#) of this project.
+2. [Install the necessary dependencies](#) by running the cammand `npm i`.
+3. [Configure the database](#) : Open your mongoDB and create a new Database named 'BlodDB'.
+4. [Start the development server](#) by running the command `node app.js`.
+5. [Access the application](#) in your web browser by typing 'http://localhost:3000/'.
+6. And you are all done.
 
 ## Usage
 1. **Writing a Blog Post**:
