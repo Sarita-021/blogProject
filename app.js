@@ -62,31 +62,33 @@ app.get("/" , function(req , res){
 });
 
 app.get("/posts/:postName", function(req, res){
-    
     const requestTitle = _.lowerCase(req.params.postName);
     console.log(requestTitle);
 
-    Content.findOne({title: requestTitle}, function(err, foundContent){
-        if (!err){
-            if (!foundContent){
-            //     // Create a new post
+    Content.findOne({ title: requestTitle }, function(err, foundContent) {
+        if (!err) {
+            if (!foundContent) {
+                // Create a new post
                 const content = new Content({
-                    title : content1.title,
-                    content : content1.detail
+                    title: content1.title,
+                    detail: content1.detail
                 });
                 content.save();
                 res.redirect("/posts/" + requestTitle);
             } else {
-                // Show an existing post
-                
+                // Show an existing post with SEO metadata
                 res.render("post", {
-                    title : foundContent.title,
-                    content : foundContent.detail
-                })
+                    title: foundContent.title,
+                    content: foundContent.detail,
+                    seoTitle: foundContent.title + " | My Blog",
+                    seoDescription: foundContent.detail.substring(0, 150), // Meta description
+                    seoKeywords: foundContent.title.split(" ").join(", ") + ", blog, articles"
+                });
             }
         }
     });
 });
+
 
 app.get("/about" , function(req , res){
     res.render("about", {about : aboutContent });
