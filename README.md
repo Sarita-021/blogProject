@@ -31,7 +31,7 @@ This project is a dynamic web application for creating and managing a personal b
 ## Setup Instructions
 1. [Clone the repository](#) of this project.
 2. [Install the necessary dependencies](#) by running the cammand `npm i`.
-3. [Run the Mongod server](#) : Make sure you run the following cammand in your server `sudo mongod --dbpath=/Users/yourUserName/data/db`
+3. [Run the Mongod server](#) : Make sure you run the following command in your terminal `sudo mongod --dbpath=/Users/yourUserName/data/db`
 4. [Configure the database](#) : Open your mongoDB and create a new Database named 'BlogDB'.
 5. [Start the development server](#) by running the command `node app.js`.
 6. [Access the application](#) in your web browser by typing 'http://localhost:3000/'.
