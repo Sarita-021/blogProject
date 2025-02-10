@@ -1,6 +1,5 @@
-<%- include("partiales/header") -%>
-
 <h1><%= title %></h1>
 <p><%= content %></p>
-
-<%- include("partiales/footer") -%>
+<% if(image) { %>
+    <img src="<%= image %>" alt="Post Image" width="400">
+<% } %>
