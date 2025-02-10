@@ -13,6 +13,9 @@ const app = express();
 
 let posts = [];
 
+const helmet = require('helmet');
+app.use(helmet());
+
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
