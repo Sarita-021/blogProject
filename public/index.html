@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>User Dashboard</h1>
+        <!-- Blog post example -->
+        <div class="blog-post" id="post-1">
+            <h2>Blog Title</h2>
+            <p>Blog content...</p>
+            <button onclick="editPost('1')">Edit</button>
+        </div>
+        
+        <!-- Edit Form (hidden by default) -->
+        <div id="editForm" style="display: none;">
+            <h2>Edit Blog Post</h2>
+            <input type="text" id="editTitle" placeholder="Title">
+            <textarea id="editContent" placeholder="Content"></textarea>
+            <button onclick="savePost('1')">Save</button>
+            <button onclick="cancelEdit()">Cancel</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -35,6 +35,40 @@ const content1 = new Content ({
     detail : blogContent
 })
 
+// Function to display the edit form with the current post details
+function editPost(postID) {
+    // Fetch the current post details (e.g., from an API or DOM elements)
+    const postTitle = document.querySelector(`#post-${postID} h2`).textContent;
+    const postContent = document.querySelector(`#post-${postID} p`).textContent;
+
+    // Populate the edit form with the current post details
+    document.getElementById('editTitle').value = postTitle;
+    document.getElementById('editContent').value = postContent;
+
+    // Show the edit form
+    document.getElementById('editForm').style.display = 'block';
+}
+
+// Function to save the edited post
+function savePost(postID) {
+    // Get the edited post details from the form
+    const editedTitle = document.getElementById('editTitle').value;
+    const editedContent = document.getElementById('editContent').value;
+
+    // Update the post details (e.g., send a request to the server or update the DOM elements)
+    document.querySelector(`#post-${postID} h2`).textContent = editedTitle;
+    document.querySelector(`#post-${postID} p`).textContent = editedContent;
+
+    // Hide the edit form
+    document.getElementById('editForm').style.display = 'none';
+}
+
+// Function to cancel the edit
+function cancelEdit() {
+    // Hide the edit form
+    document.getElementById('editForm').style.display = 'none';
+}
+
 const defaultContents = [content1];
 
 app.get("/" , function(req , res){
