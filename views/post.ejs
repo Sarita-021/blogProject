@@ -1,6 +1,13 @@
-<%- include("partiales/header") -%>
+<%- include("partiales/header") %>
 
 <h1><%= title %></h1>
 <p><%= content %></p>
 
-<%- include("partiales/footer") -%>
+<!-- Delete Button with Confirmation -->
+<form id="deleteForm" action="/delete/<%= postId %>?_method=DELETE" method="POST">
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+<%- include("partiales/footer") %>
+
+<script src="/js/deleteConfirm.js"></script>
