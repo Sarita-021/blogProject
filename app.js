@@ -64,9 +64,9 @@ app.get("/", function (req, res) {
   });
 });
 
-app.get("/posts/:postName", function (req, res) {
-  const requestTitle = _.lowerCase(req.params.postName);
-  console.log(requestTitle);
+app.get("/posts/:postName", function(req, res){
+    const requestTitle = _.lowerCase(req.params.postName);
+    console.log(requestTitle);
 
   Content.findOne({ title: new RegExp("^" + requestTitle + "$", "i") }, function (err, foundContent) {
     if (!err) {
@@ -110,10 +110,8 @@ app.delete("/delete/:id", function (req, res) {
 });
 
 
-
-
-app.get("/about", function (req, res) {
-  res.render("about", { about: aboutContent });
+app.get("/about" , function(req , res){
+    res.render("about", {about : aboutContent });
 });
 
 app.get("/contact", function (req, res) {
