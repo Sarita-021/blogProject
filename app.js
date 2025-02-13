@@ -67,21 +67,22 @@ app.get("/", function (req, res) {
 app.get("/posts/:postName", function(req, res){
     const requestTitle = _.lowerCase(req.params.postName);
     console.log(requestTitle);
-
-  Content.findOne({ title: new RegExp("^" + requestTitle + "$", "i") }, function (err, foundContent) {
-    if (!err) {
-      if (!foundContent) {
-        const content = new Content({
-          title: content1.title,
-          detail: content1.detail
-        });
-        content.save();
-        res.redirect("/posts/" + requestTitle);
+    Content.findOne({title: requestTitle}, function(err, foundContent){
+      if (!err){
+          if (!foundContent){
+          //     // Create a new post 
+          const content = new Content({
+            title : content1.title,
+            content : content1.detail
+          });
+          content.save();
+          res.redirect("/posts/" + requestTitle);
       } else {
-        res.render("post", {
-          title: foundContent.title,
-          content: foundContent.detail,
-          postId: foundContent._id 
+          // Show an existing post
+          res.render("post", {
+          title : foundContent.title,
+          content : foundContent.detail,
+          postId: foundContent._id
         });
       }
     }
