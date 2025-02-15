@@ -1,8 +1,10 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const _ = require('lodash');
+const multer  = require('multer');
+const {storage}=require("./public/js/cloudConfig.js");
+const upload = multer({ storage:storage });
 
 const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam...";
 const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque...";
@@ -22,7 +24,7 @@ app.use(helmet());
 
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 mongoose.set("strictQuery", false);
@@ -32,10 +34,14 @@ mongoose.connect("mongodb://127.0.0.1:27017/blogDB", () => {
 
 const contentSchema = new mongoose.Schema({
   title: String,
-  detail: String
+  detail: String,
+  image:{
+    url:String,
+    filename:String,
+  }
 });
 
-const Content = new mongoose.model("content", contentSchema);
+const Content = new mongoose.model("Content", contentSchema);
 
 const content1 = new Content({
   title: "blog 1",
@@ -122,12 +128,13 @@ app.get("/compose", function (req, res) {
   res.render("compose");
 });
 
-app.post("/compose", function (req, res) {
+app.post("/compose",upload.single("uploaded-file"), function (req, res) {
   const content = new Content({
     title: req.body.item,
-    detail: req.body.postText
+    detail: req.body.postText,
   });
-
+  content.image.url=req.file.path;
+  content.image.filename=req.file.filename;
   posts.push(content);
 
   Content.insertMany(posts, function (err) {
@@ -140,6 +147,6 @@ app.post("/compose", function (req, res) {
   res.redirect("/");
 });
 
-app.listen(3000, function () {
-  console.log("Server started on port 3000");
+app.listen(8080, function () {
+  console.log("Server started on port 8080");
 });

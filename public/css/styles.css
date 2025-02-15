@@ -15,6 +15,14 @@
     color: #1abc9c !important;
 }
 
+.index-listing-image{
+    height: 40vh;
+}
+
+.card-img-top{
+    border-radius: 1rem!important;
+}
+
 .footer-padding {
 	padding-bottom: 60px;
 }
