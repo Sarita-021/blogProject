@@ -77,7 +77,7 @@ app.get("/posts/:id", async (req, res) => {
     const requestId = req.params.id;
     console.log("/posts/:id", requestId);
 
-    // Find post by title
+    // Find post by id
     const foundContent = await Content.findOne({ _id: requestId });
 
     if (!foundContent) {
