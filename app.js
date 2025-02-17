@@ -140,8 +140,8 @@ app.post("/compose", async function (req, res) {
   });
 
   posts.push(content);
-
-  await Content.insertMany(posts, function (err) {
+  await content.save();
+  Content.insertMany(posts, function (err) {
     if (err) {
       console.log(err);
     } else {
