@@ -1,0 +1,17 @@
+<%- include("partiales/header") -%>
+<h1>Edit Post</h1>
+
+<form action="/update/<%= postId %>?_method=PUT" method="POST">
+  <div class="form-group">
+    <label for="item">Title</label>
+    <input type="text" name="title" class="form-control" value="<%= title %>" />
+
+    <label for="item">Content</label>
+    <textarea name="content" class="form-control" cols="100" rows="10">
+<%= content %></textarea
+    >
+  </div>
+  <button class="btn btn-primary" type="submit">Update</button>
+</form>
+
+<%- -%> <%- include("partiales/footer") -%>

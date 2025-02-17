@@ -75,7 +75,7 @@ app.get("/", async function (req, res) {
 app.get("/posts/:id", async (req, res) => {
   try {
     const requestId = req.params.id;
-    console.log("/posts/:id", requestId);
+    // console.log("/posts/:id", requestId);
 
     // Find post by id
     const foundContent = await Content.findOne({ _id: requestId });
@@ -98,6 +98,54 @@ app.get("/posts/:id", async (req, res) => {
     console.error("Error fetching post:", err);
     res.status(500).send("Internal Server Error");
   }
+});
+
+// Edit Route
+
+app.get("/edit/:id", function (req, res) {
+  const postId = req.params.id;
+  console.log("Editing Post ID:", postId);
+
+  Content.findById(postId, function (err, foundPost) {
+    if (!err) {
+      if (foundPost) {
+        res.render("edit", {
+          title: foundPost.title,
+          content: foundPost.detail,
+          postId: foundPost._id,
+        });
+      } else {
+        res.send("Post not found!");
+      }
+    } else {
+      console.log("Error fetching post for edit:", err);
+      res.send("Error fetching post.");
+    }
+  });
+});
+
+app.put("/update/:id", function (req, res) {
+  const postId = req.params.id;
+  const updatedTitle = req.body.title;
+  const updatedContent = req.body.content;
+
+  console.log("Updating Post ID:", postId);
+  console.log("New Title:", updatedTitle);
+  console.log("New Content:", updatedContent);
+
+  Content.findByIdAndUpdate(
+    postId,
+    { title: updatedTitle, detail: updatedContent },
+    function (err, result) {
+      if (!err) {
+        console.log("Successfully updated:", result);
+        res.redirect("/posts/" + postId);
+      } else {
+        console.log("Error updating post:", err);
+        res.send("Error updating post.");
+      }
+    }
+  );
 });
 
 //  Delete Route
