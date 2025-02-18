@@ -4,7 +4,8 @@
   <h1>HOME</h1>
   <p><%= homeStarting %></p>
   <% posts.forEach(function(post) { %>
-  <h1><%= post.title %></h1>
+  <img src=<%=post.image.url%> class="card-img-top index-image">
+<h1><%= post.title %></h1>
   <p>
     <%= post.detail ? post.detail.substr(0, 100) + "..." : "No content"%>
     <a href="/posts/<%= post._id %>">Read more</a>

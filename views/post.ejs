@@ -1,5 +1,6 @@
 <%- include("partiales/header") %>
 
+<img src=<%=image%> class="card-img-top index-image">
 <h1><%= title %></h1>
 <p><%= content %></p>
 
@@ -19,5 +20,4 @@
 
 <%- include("partiales/footer") %>
 
-<!-- Include the delete confirmation script -->
-<%- include("deleteConfirm") %>
+<script src="/js/deleteConfirm.js"></script>

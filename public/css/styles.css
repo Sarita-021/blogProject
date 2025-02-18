@@ -15,17 +15,25 @@
   color: #1abc9c !important;
 }
 
+.index-image{
+    height: 40vh;
+}
+
+.card-img-top{
+    border-radius: 1rem!important;
+}
+
 .footer-padding {
   padding-bottom: 60px;
 }
 
 .footer {
-  position: absolute;
-  text-align: center;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #1abc9c;
+	position: relative;
+	text-align: center;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: #1abc9c;
 }
 
 .footer p {
