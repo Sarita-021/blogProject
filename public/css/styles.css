@@ -15,7 +15,7 @@
     color: #1abc9c !important;
 }
 
-.index-listing-image{
+.index-image{
     height: 40vh;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .footer {
-	position: absolute;
+	position: relative;
 	text-align: center;
 	bottom: 0;
 	width: 100%;

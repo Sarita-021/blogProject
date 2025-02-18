@@ -5,7 +5,7 @@
 <h1>HOME</h1>
 <p><%= homeStarting %></p>
 <% posts.forEach(function(post) { %>
-<img src="https://imgs.search.brave.com/drA0deQgT0f0c-5CPOjsjZmbqk-sZZDHHnp0XCMF5hk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTU3/NDA0OTc2L3Bob3Rv/L3Jldm9sdXRpb24u/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PUdra3h5QzBmLTNu/NDVQcUNOMEI4cy04/bGFhR1ZIcVdfZjBj/Y1U0QmowVDQ9" class="card-img-top index-listing-image" alt="Image">
+<img src=<%=post.image.url%> class="card-img-top index-image">
 <h1><%=  post.title %></h1> 
 <p><%= (post.detail).substr(0, 100) + "..." %> 
     <a href="/posts/<%=post.title%>">Read more</a>
