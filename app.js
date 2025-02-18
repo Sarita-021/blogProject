@@ -30,9 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 mongoose.set("strictQuery", false);
-mongoose.connect(
-  "mongodb+srv://ayanangshudutta1:1tnbPzSiHItnLIdi@playground.pmqip.mongodb.net/?retryWrites=true&w=majority&appName=Playground",
-  () => {
+mongoose.connect("mongodb://127.0.0.1:27017/blogDB", () => {
     console.log("Connected to MongoDB");
   }
 );
@@ -139,7 +137,8 @@ app.put("/update/:id", function (req, res) {
     function (err, result) {
       if (!err) {
         console.log("Successfully updated:", result);
-        res.redirect("/posts/" + postId);
+        console.log("Redirecting to /");
+        res.redirect("/");
       } else {
         console.log("Error updating post:", err);
         res.send("Error updating post.");
