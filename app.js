@@ -1,11 +1,13 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 
 const helmet = require("helmet");
 const methodOverride = require("method-override");
+const multer  = require('multer');
+const {storage}=require("./public/js/cloudConfig.js");
+const upload = multer({ storage:storage });
 
 const app = express();
 
@@ -26,8 +28,13 @@ app.use(helmet());
 
 app.set("view engine", "ejs");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "img-src 'self' data: https://picsum.photos *;");
+  next();
+});
 
 mongoose.set("strictQuery", false);
 mongoose.connect("mongodb://127.0.0.1:27017/blogDB", () => {
@@ -38,9 +45,13 @@ mongoose.connect("mongodb://127.0.0.1:27017/blogDB", () => {
 const contentSchema = new mongoose.Schema({
   title: String,
   detail: String,
+  image:{
+    url:String,
+    filename:String,
+  }
 });
 
-const Content = new mongoose.model("content", contentSchema);
+const Content = new mongoose.model("Content", contentSchema);
 
 const content1 = new Content({
   id: 1,
@@ -87,6 +98,7 @@ app.get("/posts/:id", async (req, res) => {
     } else {
       // Render the found post
       res.render("post", {
+        image: foundContent.image.url,
         title: foundContent.title,
         content: foundContent.detail,
         postId: foundContent._id,
@@ -180,12 +192,13 @@ app.get("/compose", function (req, res) {
   res.render("compose");
 });
 
-app.post("/compose", async function (req, res) {
+app.post("/compose",upload.single("uploaded-file"), async function (req, res) {
   const content = new Content({
     title: req.body.item,
     detail: req.body.postText,
   });
-
+  content.image.url=req.file.path;
+  content.image.filename=req.file.filename;
   posts.push(content);
   await content.save();
   Content.insertMany(posts, function (err) {
@@ -198,6 +211,6 @@ app.post("/compose", async function (req, res) {
   res.redirect("/");
 });
 
-app.listen(3000, function () {
-  console.log("Server started on port 3000");
+app.listen(8080, function () {
+  console.log("Server started on port 8080");
 });
