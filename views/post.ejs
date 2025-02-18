@@ -3,10 +3,19 @@
 <h1><%= title %></h1>
 <p><%= content %></p>
 
-<!-- Delete Button with Confirmation -->
-<form id="deleteForm" action="/delete/<%= postId %>?_method=DELETE" method="POST">
+<div class="flex">
+  <!-- Edit btn`` -->
+  <a href="/edit/<%= postId %>" class="btn btn-primary">Edit</a>
+
+  <!-- Delete Button with Confirmation -->
+  <form
+    id="deleteForm"
+    action="/delete/<%= postId %>?_method=DELETE"
+    method="POST"
+  >
     <button type="submit" class="btn btn-danger">Delete</button>
-</form>
+  </form>
+</div>
 
 <%- include("partiales/footer") %>
 
