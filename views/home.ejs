@@ -1,19 +1,16 @@
 <%- include("partiales/header") -%>
 
 <div id="/">
-
-<h1>HOME</h1>
-<p><%= homeStarting %></p>
-<% posts.forEach(function(post) { %>
-<img src=<%=post.image.url%> class="card-img-top index-image">
-<h1><%=  post.title %></h1> 
-<p><%= (post.detail).substr(0, 100) + "..." %> 
-    <a href="/posts/<%=post.title%>">Read more</a>
-</p>
- <% }) %>
-
-
-
+  <h1>HOME</h1>
+  <p><%= homeStarting %></p>
+  <% posts.forEach(function(post) { %>
+  <img src=<%=post.image.url%> class="card-img-top index-image">
+<h1><%= post.title %></h1>
+  <p>
+    <%= post.detail ? post.detail.substr(0, 100) + "..." : "No content"%>
+    <a href="/posts/<%= post._id %>">Read more</a>
+  </p>
+  <% }) %>
 </div>
 
 <%- include("partiales/footer") -%>
