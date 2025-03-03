@@ -1,16 +1,27 @@
 <%- include("partiales/header") -%>
 
 <div id="/">
+  <div id="loader">
+    <img src="./infinite-spinner.svg" alt="loading...">
+  </div>
+  <div id="main-content">
   <h1>HOME</h1>
   <p><%= homeStarting %></p>
   <% posts.forEach(function(post) { %>
   <img src=<%=post.image.url%> class="card-img-top index-image">
 <h1><%= post.title %></h1>
-  <p>
+  <p> 
     <%= post.detail ? post.detail.substr(0, 100) + "..." : "No content"%>
     <a href="/posts/<%= post._id %>">Read more</a>
   </p>
   <% }) %>
 </div>
+</div>
 
 <%- include("partiales/footer") -%>
+<script>
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("main-content").style.display = "block";
+  }, 2000);
+</script>
