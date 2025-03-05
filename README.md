@@ -44,7 +44,7 @@ The project includes SEO optimization features such as slug-based URLs, an XML s
 3. [Run the Mongod server](#) : Make sure you run the following command in your terminal `sudo mongod --dbpath=/Users/yourUserName/data/db`
 4. [Configure the database](#) : Open your mongoDB and create a new Database named 'BlogDB'.
 5. [Start the development server](#) by running the command `node app.js`.
-6. [Access the application](#) in your web browser by typing 'http://localhost:3000/'.
+6. [Access the application](#) in your web browser by typing 'http://localhost:8080/'.
 7. SEO Optimizations
    - **Slug-based URLs:** Blog posts use slugs instead of IDs for better readability and SEO.
    - **XML Sitemap:** A sitemap is dynamically generated at `/sitemap.xml` to improve indexing.
